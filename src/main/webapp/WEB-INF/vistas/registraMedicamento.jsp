@@ -10,12 +10,12 @@
 
 <link rel="stylesheet" href="css/bootstrap.css"/>
 <link rel="stylesheet" href="css/bootstrapValidator.css"/>
-<title>YHEREMI RAMOS </title>
+<title>Yheremi Ramos </title>
 </head>
 <body>
 
 <div class="container">
-<h1>Registra Concurso</h1>
+<h1>Registra Medicamento</h1>
 
 	<form id="id_form"> 
 		<div class="row" style="margin-top: 5%">
@@ -27,39 +27,38 @@
 					<input class="form-control" type="text" id="id_nombre" name="nombre" placeholder="Ingrese el nombre" maxlength="40">
 				</div>
 			</div>
-			
+			<div class="form-group  col-sm-6">
+				<div class="col-sm-4">
+					<label class="control-label" for="id_precio">Precio</label>
+				</div>
+				<div class="col-sm-6">
+					<input class="form-control" type="text" id="id_precio" name="precio" placeholder="Ingrese el Precio" maxlength="7">
+		 		</div>
+			</div>
 		</div>
 		<div class="row" style="margin-top: 0%">
-			
-			<div class="form-group  col-sm-6">
+			<div class="form-group col-sm-6">
 				<div class="col-sm-4">
-					<label class="control-label" for="id_fechaI">Fecha de Inicio</label>
-				</div>
-				<div class="col-sm-6">
-					<input class="form-control" type="date" id="id_fechaI" name="fechaInicio" placeholder="Ingrese la fecha de Inicio" maxlength="100">
-		 		</div>
-			</div>
-			
-			<div class="form-group  col-sm-6">
-				<div class="col-sm-4">
-					<label class="control-label" for="id_fechaF">Fecha de Fin</label>
-				</div>
-				<div class="col-sm-6">
-					<input class="form-control" type="date" id="id_fechaF" name="fechaFin" placeholder="Ingrese la fecha de Fin" maxlength="100">
-		 		</div>
-			</div>
-					<div class="form-group col-sm-6">
-				<div class="col-sm-4">
-					<label class="control-label" for="id_estado">Estado</label>
+					<label class="control-label" for="id_stock">Stock</label>
 				</div>
 				<div class="col-sm-8">
-					<input class="form-control" type="text" id="id_estado" name="estado" placeholder="Ingrese el estado" maxlength="40">
+					<input class="form-control" type="text" id="id_stock" name="stock" placeholder="Ingrese el stock" maxlength="50">
 				</div>
 			</div>
+			
+			<div class="form-group col-sm-6">
+				<div class="col-sm-4">
+					<label class="control-label" for="id_laboratorio">Laboratorio</label>
+				</div>
+				<div class="col-sm-8">
+					<input class="form-control" type="text" id="id_laboratorio" name="laboratorio" placeholder="Ingrese el nombre del laboratorio" maxlength="40">
+				</div>
+			</div>
+			
 		</div>
 		
 		<div class="row" style="margin-top: 2%" align="center"	>
-				<button id="id_registrar" type="button" class="btn btn-primary" >Crea Concurso</button>
+				<button id="id_registrar" type="button" class="btn btn-primary" >Crea Medicamento</button>
 		</div>	
 	</form>
 </div>
@@ -74,7 +73,7 @@ $("#id_registrar").click(function (){
    	if (validator.isValid()){
 		$.ajax({
     		type: "POST",
-            url: "registraConcurso", 
+            url: "registraMedicamento", 
             data: $('#id_form').serialize(),
             success: function(data){
             	mostrarMensaje(data.MENSAJE);
@@ -93,9 +92,9 @@ $("#id_registrar").click(function (){
 
 function limpiarFormulario(){
 	$('#id_nombre').val('');
-	$('#id_fechaI').val('');
-	$('#id_fechaF').val('');
-	$('#id_estado').val('');
+	$('#id_precio').val('');
+	$('#id_stock').val('');
+	$('#id_laboratorio').val('');
 }
 
 $(document).ready(function() {
@@ -120,30 +119,30 @@ $(document).ready(function() {
                         },
                     }
                 },
-                fechaInicio:{
-                    selector: "#id_fechaI",
+               	precio:{
+                    selector: "#id_precio",
                     validators:{
                         notEmpty: {
-                             message: 'La fecha de Inicio es obligatorio'
+                             message: 'El precio es obligatorio'
                         }
                     }
                 },
-                fechaFinal:{
-                    selector: "#id_fechaF",
+                stock:{
+                    selector: "#id_stock",
                     validators:{
                         notEmpty: {
-                             message: 'La fecha de Fin es obligatorio'
+                             message: 'El stock es obligatorio'
                         }
                     }
                 },
-                estado:{
-                    selector: "#id_estado",
+                laboratorio:{
+                    selector: "#id_laboratorio",
                     validators:{
                         notEmpty: {
-                             message: 'El estado es obligatorio'
+                             message: 'El laboratorio es obligatorio'
                         }
                     }
-                }
+                },
         }   
     });
 

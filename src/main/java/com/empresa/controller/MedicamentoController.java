@@ -9,23 +9,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.empresa.entity.Alumno;
-import com.empresa.service.AlumnoService;
+import com.empresa.entity.Medicamento;
+import com.empresa.service.MedicamentoService;
 
 @Controller
-public class AlumnoController {
+public class MedicamentoController {
 
 	@Autowired
-	private AlumnoService service;
+	private MedicamentoService service;
 	
-	@GetMapping(value = "/verAlumno" )
-	public String verAlumno() {return "registraAlumno";}
+	@GetMapping(value = "/verMedicamento" )
+	public String verAlumno() {return "registraMedicamento";}
 
-	@PostMapping("/registraAlumno")
+	@PostMapping("/registraMedicamento")
 	@ResponseBody
-	public Map<?, ?> registra(Alumno obj){
+	public Map<?, ?> registra(Medicamento obj){
 		HashMap<String, String> map = new HashMap<String, String>();
-		Alumno objSalida = service.insertaAlumno(obj);
+		Medicamento objSalida = service.insertaMedicamento(obj);
 		if (objSalida == null) {
 			map.put("MENSAJE", "Error en el registro");
 		}else {
